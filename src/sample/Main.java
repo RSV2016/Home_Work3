@@ -14,16 +14,19 @@ import static java.lang.Math.random;
         System.out.println("Введите 4, если вы хотите выполнить задание №4: ");
         System.out.println("Введите 5, если вы хотите выполнить задание №5: ");
         int a = scar.nextInt();
-        if (a == 1) {
-            Task1();
-        } else if (a == 2) {
-            Task2();
-        }else if ( a==3){
-            Task3();
-        }else if (a==4){
-            Task4();
-        }else if (a==5){
-            Task5();
+       switch (a){    //Гарна ідея з меню. switch тут підходить краще.Також Меню можна було розмістити в циклі, який би повторювався, поки не буде коректної відповіді.
+            case 1:  Task1();
+                break;
+            case 2:  Task2();
+                break;
+            case 3:  Task3();
+                break;
+            case 4:  Task4();
+                break;
+            case 5:  Task5();
+                break;
+            default: System.out.println("Щось пышло не так...");;
+                break;
         }
 
 
@@ -33,24 +36,24 @@ import static java.lang.Math.random;
 
         System.out.println("Введите пожалуйста катет: ");
         int a = scar.nextInt();
-        System.out.println("Введите пожалуйста гипотенузу :  ");
+        System.out.println("Введите пожалуйста гипотенузу :  ");// Площа обраховується за двума катетами, формула вірна.
         int b = scar.nextInt();
         System.out.print("Ваша площадь равна :  " + treugolnik(a, b));
     }
 
-    static int treugolnik(int a, int b) {
-        int c = a * b / 2;
-        return c;
+    static double treugolnik(int a, int b) {     //Площа може бути не цылим числом
+        return a * b / 2;//Так краще, ми не створюємо зайву змінну.
     }
 
     public static void Task2() {
         Scanner scar = new Scanner(System.in);
 
-        System.out.print("Введите пожалуйста размер вашей таблицы умножения.");
+        System.out.println("Введите пожалуйста размер вашей таблицы умножения.");
         System.out.print("Введите первое число : ");
         int a = scar.nextInt();
-        System.out.println("Введите пожалуйста второе число :  ");
+        System.out.print("Введите пожалуйста второе число :  ");
         int b = scar.nextInt();
+        System.out.println();
         Mnoj(a, b);
     }
 
@@ -60,7 +63,7 @@ import static java.lang.Math.random;
         for (int i = 1; i < f+1; i++) {
             System.out.println();
             for (int j = 1; j < r+1; j++) {
-                System.out.print(j*i + " ");
+                System.out.print(j*i + "\t");
 
             }
         }
@@ -106,13 +109,11 @@ import static java.lang.Math.random;
          return min;
      }
 
-    static void  Task5(){
+   static void  Task5(){
         Random rand = new  Random();
-        int m =  rand.nextInt();
-        int n = rand.nextInt();
-        final int M = m;
-        final int N = n;
-        int[][] arr = new int[M][N];
+        int m =  Math.abs(rand.nextInt())%10;
+        int n = Math.abs(rand.nextInt())%10;
+        int[][] arr = new int[m][n];
 
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[i].length; j++) {
@@ -121,7 +122,6 @@ import static java.lang.Math.random;
             }
             System.out.println();
         }
-
         int[] countArr = func(arr);
         for (int i = 0; i < countArr.length; i++) {
             System.out.println("Результат добавления елементов" + (i + 1) + " рядка: " + countArr[i] + " ");
